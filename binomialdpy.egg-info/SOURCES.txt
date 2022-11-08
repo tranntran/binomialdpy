@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+binomialdpy.egg-info/PKG-INFO
+binomialdpy.egg-info/SOURCES.txt
+binomialdpy.egg-info/dependency_links.txt
+binomialdpy.egg-info/requires.txt
+binomialdpy.egg-info/top_level.txt
