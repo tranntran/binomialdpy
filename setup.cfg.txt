@@ -1,0 +1,20 @@
+[metadata]
+# replace with your username:
+name = binomialdpy
+version = 0.1.1
+author = Jordan Awan, Aleksandra Slavkovic, Tran Tran, and Kaitlyn Dowden
+author_email = ttran2401@gmail.com
+description = Differentially Private Uniformly Most Powerful Test for Binomial Data
+long_description = file: README.md
+long_description_content_type = text/markdown
+url = https://github.com/tranntran/binomialdpy
+classifiers =
+	Development Status :: 3 - Alpha
+	License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+    Programming Language :: Python :: 3.7
+    Programming Language :: Python :: 3.8
+    Programming Language :: Python :: 3.9
+    Intended Audience :: Science/Research
+[options]
+packages = find:
+python_requires = >=3.7
