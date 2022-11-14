@@ -1,3 +1,4 @@
+
 import numpy as np
 from scipy.stats import norm
 import math
@@ -23,8 +24,8 @@ def random(n, m = 0, b = 0, q = 0):
     def approx_trials(n, prob = 1, alpha = 0):
         a = prob**2
         b = -((2 * n * prob) + ((norm.ppf(alpha)**2) * prob * (1 - prob)))
-        c = n^2
-        return round(-b + math.sqrt(b**2 - (4 * a * c))/ (2 * a), 0)
+        c = n**2
+        return -b + math.sqrt(b**2 - (4 * a * c))/ (2 * a)
 
     # Calculate actual amount needed
     q = lcut + rcut
@@ -58,14 +59,14 @@ def cdf(t, m = 0, b = 0, q = 0):
   """
   Give the cummulative distribution function (CDF) from the Tulap distribution.
 
-  :param t: Array of quantiles.
-  :type t: array
-  :param m: Array of medians.
-  :type m: array
-  :param b: Array of Discrete Laplace noise parameters (exp(-&epsilon;)).
-  :type b: array
-  :param q: Array of truncated quantiles.
-  :type q: array
+  :param t: Quantile.
+  :type t: float
+  :param m: Median.
+  :type m: float
+  :param b: Discrete Laplace noise parameter (exp(-&epsilon;)).
+  :type b: float
+  :param q: Truncated quantile.
+  :type q: float
   """
 
   lcut = q/2

@@ -1,40 +1,8 @@
-#' Calculating Unbiased Two-Sided DP-UMP Tests
-#' @aliases twoside
-#' @aliases umpu
-#'
-#' @param p The success probability for each trial (parameter \eqn{\p}
-#'   in Binomial(n, \eqn{\p}))
-#' @param n The number of trials in Binomial distribution (parameter n in
-#'   Binomial(n, \eqn{\p}))
-#' @param alpha Level of the tests
-#' @param epsilon Parameter \eqn{\epsilon} in \eqn{(\epsilon, \delta)}-DP
-#' @param delta Parameter \eqn{\delta} in \eqn{(\epsilon, \delta)}-DP
-#'
-#' @return A vector of unbiased two-sided DP-UMP tests
-#' @export
-#' @references Awan, Jordan Alexander, and Aleksandra Slavkovic. 2020.
-#'   "Differentially Private Inference for Binomial Data". Journal of Privacy
-#'   and Confidentiality 10 (1). \url{https://doi.org/10.29012/jpc.725}.
-#' @seealso Calculating simple and one-sided DP-UMP tests (\code{\link{umpLeft}}
-#'   or \code{\link{umpRight}}) and asymptotically unbiased two-sided DP-UMP
-#'   tests (\code{\link{umpuApprox}})
-#' @examples
-#' #Comparing unbiased DP-UMP tests obtained by umpuApprox and UMPU
-#' asymp <- umpuApprox(p = 0.4, n = 10, alpha = 0.05, epsilon = 1, delta = 0.01)
-#' twoside <- UMPU(p = 0.4, n = 10, alpha = 0.05, epsilon = 1, delta = 0.01)
-#'
-#' #Plot the probability of rejecting the null hypothesis based on x
-#' plot(asymp, type = "l", lwd = 1.5, col = "red", xlab = "x",
-#'   ylab = "Phi (Probability of rejecting the null hypothesis)",
-#'   main = "Unbiased DP-UMP Tests")
-#' lines(twoside, type = "l", lwd = 1.5, lty = 2, col = "blue")
-#' legend("topleft", legend=c("Asymptotically UMPU", "UMPU"),
-#'   col=c("red", "blue"), lty=1:2, lwd = 1.5)
-#'
 import math
 import numpy as np
 from scipy.stats import binom
 from scipy.optimize import brentq
+from binomialdpy import tulap
 
 def unbiased(p, n, alpha, epsilon, delta):
     """
@@ -134,8 +102,7 @@ def approx(p, n, alpha, epsilon, delta):
     q = 2*delta*b/(1-b+2*delta*b)
     values = [i for i in range(n+1)]
     B = binom.pmf(values, n = n, p = p)
-    BX = np.multiply(B, [x - n*p for x in values])
-    k = size*theta
+    k = n*p
 
     greater_k = [x >= k for x in values]
 

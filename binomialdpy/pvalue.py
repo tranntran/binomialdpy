@@ -1,5 +1,6 @@
 from scipy.stats import binom
 import numpy as np
+from binomialdpy import tulap
 
 def right(sample, n, p, b, q):
     """

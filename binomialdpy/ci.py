@@ -1,5 +1,6 @@
 
 from scipy.optimize import minimize
+from binomialdpy import pvalue
 
 def lower(alpha, sample, n, b, q):
     """
@@ -64,13 +65,13 @@ def two_side(alpha, sample, n, b, q):
             return tmp[0] - alpha
         
         if mle > 0:
-            tmp = minimize(ci_obj, mle/2, method='L-BFGS-B', bounds=((0, mle),))
+            tmp = minimize(ci_obj2, mle/2, method='L-BFGS-B', bounds=((0, mle),))
             L = tmp.x
         else:
             L = 0
         
         if mle < 1:
-            tmp = minimize(ci_obj, (1-mle)/2, method='L-BFGS-B', bounds=((mle, 1),))
+            tmp = minimize(ci_obj2, (1-mle)/2, method='L-BFGS-B', bounds=((mle, 1),))
             U = tmp.x
         else:
             U = 1

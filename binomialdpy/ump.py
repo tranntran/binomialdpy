@@ -2,6 +2,7 @@ import math
 import numpy as np
 from scipy.stats import binom
 from scipy.optimize import brentq
+from binomialdpy import tulap
 
 def left(p, n, alpha, epsilon, delta):
     """
