@@ -76,33 +76,3 @@ def two_side(alpha, sample, n, b, q):
             U = 1
         ans.append((L[0], U[0]))
     return ans      
-
-
-CITwoSide <- function(alpha , Z, size, b, q){
-  mle = Z/size
-  mle = base::max(base::min(mle, 1), 0)
-  CIobj2 = function(theta, alpha, Z, size, b, q){
-    return((pvalTwoSide(Z = Z, theta = theta, size = size, b = b, q = q) - alpha)^2)
-  }
-
-  if(mle > 0){
-    L = stats::optim(par = mle/2, fn = CIobj2,
-                     alpha = alpha, Z = Z, size = size, b = b, q = q,
-                     method = "Brent", lower = 0, upper = mle)
-    L = L$par
-  } else {
-    L = 0
-  }
-
-  if(mle < 1){
-    U = stats::optim(par = (1-mle)/2, fn = CIobj2,
-                     alpha = alpha, Z = Z, size = size, b = b, q = q,
-                     method = "Brent", lower = mle, upper = 1)
-    U = U$par
-  } else {
-    U = 1
-  }
-
-  CI = c(L, U)
-  return(CI)
-}
