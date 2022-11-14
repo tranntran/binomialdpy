@@ -14,7 +14,7 @@ def left(p, n, alpha, epsilon, delta):
     :param alpha: The alpha level of the tests.
     :type alpha: float
     :param epsilon: Privacy parameter in (&epsilon;, &delta;)-DP.
-    :type b: float
+    :type epsilon: float
     :param delta: Privacy parameter in (&epsilon;, &delta;)-DP.
     :type delta: float
     """
@@ -51,7 +51,7 @@ def right(p, n, alpha, epsilon, delta):
     :param alpha: The alpha level of the tests.
     :type alpha: float
     :param epsilon: Privacy parameter in (&epsilon;, &delta;)-DP.
-    :type b: float
+    :type epsilon: float
     :param delta: Privacy parameter in (&epsilon;, &delta;)-DP.
     :type delta: float
     """
