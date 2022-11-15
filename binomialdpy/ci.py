@@ -1,6 +1,6 @@
 
 from scipy.optimize import minimize
-from binomialdpy import pvalue
+from pvalue import right
 
 def lower(alpha, sample, n, b, q):
     """
@@ -20,7 +20,7 @@ def lower(alpha, sample, n, b, q):
     ans = []
     for s in sample:
         def ci_obj(p):
-            tmp = pvalue.right(sample = [s], n = n, p = p, b = b, q = q)
+            tmp = right(sample = [s], n = n, p = p, b = b, q = q)
             ans = (tmp[0]-alpha)**2
             return ans
         tmp1 = minimize(ci_obj, 0.5, method='L-BFGS-B', bounds=((0,1),))
@@ -46,7 +46,7 @@ def upper(alpha, sample, n, b, q):
     alpha = 1-alpha
     for s in sample:
         def ci_obj(p):
-            tmp = pvalue.right(sample = [s], n = n, p = p, b = b, q = q)
+            tmp = right(sample = [s], n = n, p = p, b = b, q = q)
             ans = (tmp[0]-alpha)**2
             return ans
         tmp1 = minimize(ci_obj, 0.5, method='L-BFGS-B', bounds=((0,1),))
@@ -61,7 +61,7 @@ def two_side(alpha, sample, n, b, q):
         mle = max(min([mle, 1]), 0)
 
         def ci_obj2(p):
-            tmp = pvalue.two_side(sample = [s], p = p, n = n, b = b, q = q)
+            tmp = two_side(sample = [s], p = p, n = n, b = b, q = q)
             return tmp[0] - alpha
         
         if mle > 0:

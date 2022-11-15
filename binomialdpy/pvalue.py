@@ -1,6 +1,6 @@
 from scipy.stats import binom
 import numpy as np
-from binomialdpy import tulap
+from tulap import cdf
 
 def right(sample, n, p, b, q):
     """
@@ -25,7 +25,7 @@ def right(sample, n, p, b, q):
     B = binom.pmf(values, n = n, p = p)
     
     for r in range(reps):
-        F = [tulap.cdf(t = x-sample[r], m = 0, b = b, q = q) for x in values]
+        F = [cdf(t = x-sample[r], m = 0, b = b, q = q) for x in values]
         pval[r] = np.dot(F, B)
 
     return pval
@@ -54,7 +54,7 @@ def left(sample, n, p, b, q):
     B = binom.pmf(values, n = n, p = p)
     
     for r in range(reps):
-        F = [1 - tulap.cdf(t = x-sample[r], m = 0, b = b, q = q) for x in values]
+        F = [1 - cdf(t = x-sample[r], m = 0, b = b, q = q) for x in values]
         pval[r] = np.dot(F, B)
 
     return pval

@@ -1,7 +1,7 @@
 [metadata]
 # replace with your username:
 name = binomialdpy
-version = 0.1.4
+version = 0.1.3
 author = Jordan Awan, Aleksandra Slavkovic, Tran Tran, and Kaitlyn Dowden
 author_email = ttran2401@gmail.com
 description = Differentially Private Uniformly Most Powerful Test for Binomial Data

@@ -2,7 +2,7 @@ import math
 import numpy as np
 from scipy.stats import binom
 from scipy.optimize import brentq
-from binomialdpy import tulap
+from tulap import cdf
 
 def left(p, n, alpha, epsilon, delta):
     """
@@ -26,7 +26,7 @@ def left(p, n, alpha, epsilon, delta):
     B = binom.pmf(values, n = n, p = p)
 
     def obj(s):
-        phi = [tulap.cdf(t = x-s, m = 0, b = b, q = q) for x in values]
+        phi = [cdf(t = x-s, m = 0, b = b, q = q) for x in values]
         return np.dot(B, phi) - alpha
     
     lower = -1
@@ -37,7 +37,7 @@ def left(p, n, alpha, epsilon, delta):
         upper *= 2
     
     root = brentq(obj, lower, upper)
-    phi = [tulap.cdf(t = x-root, m = 0, b = b, q = q) for x in values]
+    phi = [cdf(t = x-root, m = 0, b = b, q = q) for x in values]
     return phi
 
 
@@ -63,7 +63,7 @@ def right(p, n, alpha, epsilon, delta):
     B = binom.pmf(values, n = n, p = p)
 
     def obj(s):
-        phi = [tulap.cdf(t = x-s, m = 0, b = b, q = q) for x in values]
+        phi = [cdf(t = x-s, m = 0, b = b, q = q) for x in values]
         return np.dot(B, phi) - alpha
     
     lower = -1
@@ -74,5 +74,5 @@ def right(p, n, alpha, epsilon, delta):
         upper *= 2
     
     root = brentq(obj, lower, upper)
-    phi = [1-tulap.cdf(t = x-root, m = 0, b = b, q = q) for x in values]
+    phi = [1-cdf(t = x-root, m = 0, b = b, q = q) for x in values]
     return phi

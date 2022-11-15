@@ -2,7 +2,7 @@ import math
 import numpy as np
 from scipy.stats import binom
 from scipy.optimize import brentq
-from binomialdpy import tulap
+from tulap import cdf
 
 def unbiased(p, n, alpha, epsilon, delta):
     """
@@ -30,8 +30,8 @@ def unbiased(p, n, alpha, epsilon, delta):
         greater_k = [x >= k for x in values]
 
         def mini_obj(s):
-            F1 = [tulap.cdf(t = x-k-s, m = 0, b = b, q = q) for x in values]
-            F2 = [tulap.cdf(t = k-x-s, m = 0, b = b, q = q) for x in values]
+            F1 = [cdf(t = x-k-s, m = 0, b = b, q = q) for x in values]
+            F2 = [cdf(t = k-x-s, m = 0, b = b, q = q) for x in values]
             phi = np.add([x if y == True else 0 for x, y in zip(F1, greater_k)], \
                 [x if y == False else 0 for x, y in zip(F2, greater_k)])
             ans = np.dot(B, phi) - alpha
@@ -45,8 +45,8 @@ def unbiased(p, n, alpha, epsilon, delta):
             upper *= 2
         
         mini_root = brentq(mini_obj, lower, upper)
-        F1 = [tulap.cdf(t = x-k-mini_root, m = 0, b = b, q = q) for x in values]
-        F2 = [tulap.cdf(t = k-x-mini_root, m = 0, b = b, q = q) for x in values]
+        F1 = [cdf(t = x-k-mini_root, m = 0, b = b, q = q) for x in values]
+        F2 = [cdf(t = k-x-mini_root, m = 0, b = b, q = q) for x in values]
         phi = np.add([x if y == True else 0 for x, y in zip(F1, greater_k)], \
             [x if y == False else 0 for x, y in zip(F2, greater_k)])
 
@@ -63,8 +63,8 @@ def unbiased(p, n, alpha, epsilon, delta):
     greater_k = [x >= k for x in values]
 
     def mini_obj(s):
-        F1 = [tulap.cdf(t = x-k-s, m = 0, b = b, q = q) for x in values]
-        F2 = [tulap.cdf(t = k-x-s, m = 0, b = b, q = q) for x in values]
+        F1 = [cdf(t = x-k-s, m = 0, b = b, q = q) for x in values]
+        F2 = [cdf(t = k-x-s, m = 0, b = b, q = q) for x in values]
         phi = np.add([x if y == True else 0 for x, y in zip(F1, greater_k)], \
             [x if y == False else 0 for x, y in zip(F2, greater_k)])
         ans = np.dot(B, phi) - alpha
@@ -77,8 +77,8 @@ def unbiased(p, n, alpha, epsilon, delta):
     while mini_obj(upper) > 0:
         upper *= 2
     s = brentq(mini_obj, lower, upper)
-    F1 = [tulap.cdf(t = x-k-s, m = 0, b = b, q = q) for x in values]
-    F2 = [tulap.cdf(t = k-x-s, m = 0, b = b, q = q) for x in values]
+    F1 = [cdf(t = x-k-s, m = 0, b = b, q = q) for x in values]
+    F2 = [cdf(t = k-x-s, m = 0, b = b, q = q) for x in values]
     phi = np.add([x if y == True else 0 for x, y in zip(F1, greater_k)], \
         [x if y == False else 0 for x, y in zip(F2, greater_k)])
     return phi
@@ -107,8 +107,8 @@ def approx(p, n, alpha, epsilon, delta):
     greater_k = [x >= k for x in values]
 
     def obj(s):
-        F1 = [tulap.cdf(t = x-k-s, m = 0, b = b, q = q) for x in values]
-        F2 = [tulap.cdf(t = k-x-s, m = 0, b = b, q = q) for x in values]
+        F1 = [cdf(t = x-k-s, m = 0, b = b, q = q) for x in values]
+        F2 = [cdf(t = k-x-s, m = 0, b = b, q = q) for x in values]
         phi = np.add([x if y == True else 0 for x, y in zip(F1, greater_k)], \
             [x if y == False else 0 for x, y in zip(F2, greater_k)])
         ans = np.dot(B, phi) - alpha
@@ -121,8 +121,8 @@ def approx(p, n, alpha, epsilon, delta):
     while obj(upper) > 0:
         upper *= 2
     s = brentq(obj, lower, upper)
-    F1 = [tulap.cdf(t = x-k-s, m = 0, b = b, q = q) for x in values]
-    F2 = [tulap.cdf(t = k-x-s, m = 0, b = b, q = q) for x in values]
+    F1 = [cdf(t = x-k-s, m = 0, b = b, q = q) for x in values]
+    F2 = [cdf(t = k-x-s, m = 0, b = b, q = q) for x in values]
     phi = np.add([x if y == True else 0 for x, y in zip(F1, greater_k)], \
         [x if y == False else 0 for x, y in zip(F2, greater_k)])
     return phi
