@@ -1,6 +1,13 @@
 LICENSE
 README.md
+setup.cfg
 setup.py
+binomialdpy/__init__.py
+binomialdpy/ci.py
+binomialdpy/pvalue.py
+binomialdpy/tulap.py
+binomialdpy/ump.py
+binomialdpy/umpu.py
 binomialdpy.egg-info/PKG-INFO
 binomialdpy.egg-info/SOURCES.txt
 binomialdpy.egg-info/dependency_links.txt

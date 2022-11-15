@@ -9,7 +9,7 @@ with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
 setup(
     name="binomialdpy",
     packages=find_packages(where="binomialdpy"),
-    version="0.1.3",
+    version="0.1.5",
     license='GPLv3',
     description="Differentially Private UMP Test for Binomial Data",
     long_description=long_description,

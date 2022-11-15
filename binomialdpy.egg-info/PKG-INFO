@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: binomialdpy
-Version: 0.1.3
+Version: 0.1.5
 Summary: Differentially Private UMP Test for Binomial Data
 Home-page: https://github.com/tranntran/binomialdpy
 Author: Jordan Awan, Aleksandra Slavkovic, Tran Tran, and Kaitlyn Dowden
@@ -14,6 +14,7 @@ Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
 Classifier: Intended Audience :: Science/Research
+Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
